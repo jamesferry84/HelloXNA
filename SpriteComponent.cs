@@ -29,6 +29,8 @@ namespace HelloXNA
         private float scale;
         private float rotation;
 
+        KeyboardState lastKeyboardState;
+
         public Vector2 Position
         {
             get { return this.position; }
@@ -69,21 +71,30 @@ namespace HelloXNA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            position += (velocity * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            KeyboardState currentKeyboardState = Keyboard.GetState();
 
             
-                if ((position.X + texture.Width) > GraphicsDevice.Viewport.Width || position.X < 0)
-                {
-                    velocity.X *= -1;
-                }
 
-                if ((position.Y + texture.Height) > GraphicsDevice.Viewport.Height || position.Y < 0)
-                {
-                    velocity.Y *= -1;
-                }
+            if (currentKeyboardState.IsKeyDown(Keys.Up))
+            {
+                position.Y -= (velocity.Y * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.Down))
+            {
+                position.Y += (velocity.Y * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.Left))
+            {
+                position.X -= (velocity.X * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.Right))
+            {
+                position.X += (velocity.X * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
+                
 
-            
-            
+
+            lastKeyboardState = currentKeyboardState;
 
             base.Update(gameTime);
         }
