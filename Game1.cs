@@ -19,6 +19,8 @@ namespace HelloXNA
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Texture2D xnaTexture;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -47,7 +49,7 @@ namespace HelloXNA
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            xnaTexture = Content.Load<Texture2D>(@"Textures\XNA");
         }
 
         /// <summary>
@@ -83,7 +85,9 @@ namespace HelloXNA
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(xnaTexture, new Vector2(0, 0), Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
