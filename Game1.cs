@@ -19,8 +19,6 @@ namespace HelloXNA
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D xnaTexture;
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -35,7 +33,7 @@ namespace HelloXNA
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            Components.Add(new SpriteComponent(this));
 
             base.Initialize();
         }
@@ -49,7 +47,7 @@ namespace HelloXNA
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            xnaTexture = Content.Load<Texture2D>(@"Textures\XNA");
+            Services.AddService(typeof(SpriteBatch), spriteBatch);
         }
 
         /// <summary>
@@ -84,10 +82,6 @@ namespace HelloXNA
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            spriteBatch.Begin();
-            spriteBatch.Draw(xnaTexture, new Vector2(0, 0), Color.White);
-            spriteBatch.End();
 
             base.Draw(gameTime);
         }
