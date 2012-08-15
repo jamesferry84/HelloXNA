@@ -5,3 +5,4 @@ C:\Users\James\Documents\JRFERRY Tutorials\XNA\Projects\HelloXNA\HelloXNA\HelloX
 C:\Users\James\Documents\JRFERRY Tutorials\XNA\Projects\HelloXNA\HelloXNA\HelloXNA\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\James\Documents\JRFERRY Tutorials\XNA\Projects\HelloXNA\HelloXNA\HelloXNA\obj\x86\Debug\HelloXNA.exe
 C:\Users\James\Documents\JRFERRY Tutorials\XNA\Projects\HelloXNA\HelloXNA\HelloXNA\obj\x86\Debug\HelloXNA.pdb
+C:\Users\James\Documents\JRFERRY Tutorials\XNA\Projects\HelloXNA\HelloXNA\HelloXNA\bin\x86\Debug\Content\Textures\XNA64x64.xnb

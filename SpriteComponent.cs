@@ -23,8 +23,24 @@ namespace HelloXNA
             // TODO: Construct any child components here
         }
 
-        Texture2D xnaTexture;
-        Vector2 position;
+        private Texture2D texture;
+        private Vector2 position;
+        private Vector2 velocity;
+        private float scale;
+        private float rotation;
+
+        public Vector2 Position
+        {
+            get { return this.position; }
+            set { this.position = value; }
+        }
+
+        public Vector2 Velocity
+        {
+            get { return this.velocity; }
+            set { this.velocity = value; }
+        }
+
 
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
@@ -33,15 +49,17 @@ namespace HelloXNA
         public override void Initialize()
         {
             
-            position = Vector2.Zero;
-
-
+            position = new Vector2(10,10);
+            velocity = new Vector2(80, 80);
+            scale = 1f;
+            rotation = 0f;
+            
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            xnaTexture = Game.Content.Load<Texture2D>(@"Textures\XNA");
+            texture = Game.Content.Load<Texture2D>(@"Textures\XNA64x64");
             base.LoadContent();
         }
 
@@ -51,7 +69,21 @@ namespace HelloXNA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
+            position += (velocity * (float)gameTime.ElapsedGameTime.TotalSeconds);
+
+            
+                if ((position.X + texture.Width) > GraphicsDevice.Viewport.Width || position.X < 0)
+                {
+                    velocity.X *= -1;
+                }
+
+                if ((position.Y + texture.Height) > GraphicsDevice.Viewport.Height || position.Y < 0)
+                {
+                    velocity.Y *= -1;
+                }
+
+            
+            
 
             base.Update(gameTime);
         }
@@ -60,7 +92,7 @@ namespace HelloXNA
         {
             SpriteBatch spriteBatch = Game.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
             spriteBatch.Begin();
-            spriteBatch.Draw(xnaTexture, position, Color.White);
+            spriteBatch.Draw(texture, position, null, Color.White,rotation,new Vector2(0,0),scale, SpriteEffects.None, 1f);
             spriteBatch.End();
             base.Draw(gameTime);
         }

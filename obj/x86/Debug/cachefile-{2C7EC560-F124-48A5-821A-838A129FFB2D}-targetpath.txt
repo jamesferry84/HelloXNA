@@ -1,1 +1,2 @@
 Content\Textures\XNA.xnb
+Content\Textures\XNA64x64.xnb
